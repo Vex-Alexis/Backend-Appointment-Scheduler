@@ -1,0 +1,4 @@
+INSERT INTO patient(first_name, last_name, cedula, phone_number, email, date_of_birth, gender, address) VALUES('Alexis', 'Chavarria', '1233499868', '3222604125', 'alexis.chavarria@example.com', '1998-09-03', 'Otro', 'Carrera 87F #2A - 14');
+INSERT INTO patient(first_name, last_name, cedula, phone_number, email, date_of_birth, gender, address) VALUES('John', 'Doe', '123456789', '5251234', 'john.doe@example.com', '1990-01-15', 'Masculino', 'Calle 123 #10 - 20');
+INSERT INTO patient(first_name, last_name, cedula, phone_number, email, date_of_birth, gender, address) VALUES('Jane', 'Smith', '987654321', '7555678', 'jane.smith@example.com', '1985-05-20', 'Femenino', 'Carrera 45 #41 - 32');
+INSERT INTO patient(first_name, last_name, cedula, phone_number, email, date_of_birth, gender, address) VALUES('Michael', 'Johnson', '246813579', '1259876', 'michael.johnson@example.com', '2000-11-30', 'Masculino', 'Calle 78 #54 - 13.');
