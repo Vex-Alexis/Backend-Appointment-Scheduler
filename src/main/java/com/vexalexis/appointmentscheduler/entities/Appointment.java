@@ -18,24 +18,36 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String patientID;
-    private String doctorId;
-    private String specialtyId;
-
-    @Future(message = "La fecha de nacimiento debe ser anterior a la fecha actual")
-    @NotBlank(message = "La fecha de la cita medica es obligatorio")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
+    @Future(message = "La fecha de la cita medica debe ser posterior a la fecha actual")
+    @NotBlank(message = "La fecha de la cita medica es obligatoria")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP(0)")
     private LocalDateTime appointmentDate;
 
     @Size(max = 1000, message = "Las notas no pueden exceder los 1000 caracteres")
     @Column(length = 1000)
     private String notes;
-
     private LocalDateTime createdAt;
 
 
+    // TODO: Entidades relacionadas a la entidad "Appointment"
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    @ManyToOne
+    @JoinColumn(name = "specialty_id")
+    private Specialty specialty;
+
+
+
+
+
+    // TODO: Metodos adicionales
 
     @PrePersist
     public void prePersist() {

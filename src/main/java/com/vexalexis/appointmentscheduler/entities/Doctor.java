@@ -8,6 +8,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -39,16 +43,28 @@ public class Doctor {
     @Size(min = 1, max = 50, message = "El consultorio debe tener entre 1 y 50 caracteres")
     @Pattern(regexp = "^[A-Za-z0-9\\s]+$", message = "El consultorio solo puede contener letras, números y espacios")
     private String office;
-
-
-    private String specialty;
-
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
 
+
+    // TODO: Entidades relacionadas a la entidad "Doctor"
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "doctor_specialty",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialty_id")
+    )
+    private Set<Specialty> specialties = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Appointment> appointments = new ArrayList<>();
+
+
+
+    // TODO: Metodos adicionales
 
     // Método para generar la fecha automática al crear el registro antes de persistirlo
     @PrePersist

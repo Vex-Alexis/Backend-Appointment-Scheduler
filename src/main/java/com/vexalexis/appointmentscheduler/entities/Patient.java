@@ -7,6 +7,8 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -53,7 +55,17 @@ public class Patient {
     private LocalDateTime updatedAt;
 
 
+    // TODO: Entidades relacionadas a esta entidad "Patient"
 
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Appointment> appointments = new ArrayList<>();
+
+
+
+
+
+
+    // TODO: Metodos adicionales
 
 
     // Método para generar la fecha automática al crear el registro antes de persistirlo
